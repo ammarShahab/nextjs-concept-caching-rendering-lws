@@ -176,8 +176,16 @@ Ans:
 <li>If the step 4 is false then it hits the api for data fetching from db or other sources. When it response the data from the source it will save the data in the  <strong> Data Cache </strong> for the next user.</li>
 </ol>
 
+### Normal caching strategy
+
 <p align="center">
   <img src="/public/img/next-js-caching-strategies.jpg" width="800" />
+</p>
+
+# Elaborate caching strategy
+
+<p align="center">
+  <img src="/public/img/next-js-caching-strategies-2.png" width="800" />
 </p>
 
 ### Request Memoization
