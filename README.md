@@ -54,30 +54,37 @@ Note: as two types of rendering that's why performance is slow.
 ### ⭐ 2. SSG – Static Site Generation
 
 HTML is generated once during build time.
+<br>
 Fastest performance.
-
+<br>
 Use when:
+<br>
 ✔ Data that doesn’t change often
+<br>
 ✔ Blogs, documentation, landing pages
+<br>
 
 Example
+<br>
 export const dynamic = "force-static"; default behavior
+<br>
 
-export default async function Page() {
+export default async function Page() {<br>
 const res = await fetch("https:api.example.com/posts");
-const data = await res.json();
+<br>
+const data = await res.json();<br>
 
 return <div>{JSON.stringify(data)}</div>;
 }
 
-What happens?
-i. HTML generated at build time (npm run build)
-ii. Served instantly from CDN
-iii. Does not fetch new data unless rebuild
+What happens?<br>
+i. HTML generated at build time (npm run build)<br>
+ii. Served instantly from CDN<br>
+iii. Does not fetch new data unless rebuild<br>
 
-Limitation:
+Limitation:<br>
 i. frequently changed dynamic data cannot be handled properly
-
+<br>
 Flow: request => hits CDN(Content Delivery Network) => pre-render the html => send to browser
 
 ### ⭐3. ISR – Incremental Static Regeneration also known as Hybrid Rendering (Combination of SSG and SSR)
