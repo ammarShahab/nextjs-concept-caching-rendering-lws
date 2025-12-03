@@ -89,19 +89,19 @@ Flow: request => hits CDN(Content Delivery Network) => pre-render the html => se
 
 ### ⭐3. ISR – Incremental Static Regeneration also known as Hybrid Rendering (Combination of SSG and SSR)
 
-Static page that updates automatically after an interval.
-You get performance of SSG but with auto refresh.
+Static page that updates automatically after an interval.<br>
+You get performance of SSG but with auto refresh.<br>
 
-Use when:
-✔ Blogs updated sometimes
-✔ E-commerce products
-✔ News articles
+Use when:<br>
+✔ Blogs updated sometimes<br>
+✔ E-commerce products<br>
+✔ News articles<br>
 
-Example
-export const revalidate = 60; rebuild page every 60 seconds
+Example<br>
+export const revalidate = 60; rebuild page every 60 seconds<br>
 
-export default async function Page() {
-const res = await fetch("https:api.example.com/news");
+export default async function Page() {<br>
+const res = await fetch("https:api.example.com/news");<br>
 const data = await res.json();
 
 return <div>{JSON.stringify(data)}</div>;
@@ -113,10 +113,10 @@ request => CDN => (Old Html) if doesn't exist any data then go to another reques
 |  
 |==> go to data source => background rebuild after x seconds => then replace old CDN HTML (Old Html)
 
-What happens?
-i. Page is static initially
-ii. After x seconds, the next visitor triggers background regeneration
-iii. Updated page is shown to everyone
+What happens?<br>
+i. Page is static initially<br>
+ii. After x seconds, the next visitor triggers background regeneration<br>
+iii. Updated page is shown to everyone<br>
 
 ### ⭐ 4. CSR – Client Side Rendering
 
