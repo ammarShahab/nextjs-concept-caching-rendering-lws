@@ -11,20 +11,27 @@ HTML is generated on every request.
 Always fetches fresh data.
 <br>
 Use when:
+<br>
 ✔ Live data (dashboard, admin panel, real-time prices)
 <br>
 ✔ User-specific data (auth-based content)
 
 Example (Next.js App Router)
+<br>
 export const dynamic = "force-dynamic"; enable SSR
-
+<br>
 export default async function Page() {
+<br>
 const res = await fetch("https:api.example.com/users", {
+<br>
 cache: "no-store", no caching
+<br>
 });
-
+<br>
 const data = await res.json();
+<br>
 return <div>{JSON.stringify(data)}</div>;
+<br>
 }
 
 What happens?
