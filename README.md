@@ -120,23 +120,23 @@ iii. Updated page is shown to everyone<br>
 
 ### ⭐ 4. CSR – Client Side Rendering
 
--Page loads with minimal or empty html.
--All data fetching and rendering is performed inside the browser with javascript
--the UI is build after page loads, Using react on the client side
+-Page loads with minimal or empty html.<br>
+-All data fetching and rendering is performed inside the browser with javascript<br>
+-the UI is build after page loads, Using react on the client side<br>
 
-When to use:
--When u need browser specific features like hooks, local stat, document/window
--When SEO is not important
--Data must be fetched after page loads. e.g user-specific data, dashboard
+When to use:<br>
+-When u need browser specific features like hooks, local stat, document/window<br>
+-When SEO is not important<br>
+-Data must be fetched after page loads. e.g user-specific data, dashboard<br>
 
 **Note:** To enable CSR in the App router you must you write "use-client"
 
-Performance:
-i. First load is slow
-ii. update is fast
+Performance:<br>
+i. First load is slow<br>
+ii. update is fast<br>
 
 Best for: Dashboard, chat apps, Analytics
-
+<br>
 Flow: Request => Fetch Data => parse backend data => Render in browser
 
 ### What is the normal webpage rendering process of webpage in client and server (LWS)?
