@@ -31,20 +31,24 @@ cache: "no-store", no caching
 const data = await res.json();
 <br>
 return <div>{JSON.stringify(data)}</div>;
-<br>
 }
 
 What happens?
+<br>
 i. User visits page → server fetches data → sends fresh HTML
+<br>
 ii. Happens every time
-
+<br>
 Use case:
+<br>
 i. Best for real time or dynamic content i.e user dashboard
-
+<br>
 Limitation:
+<br>
 i. Low performance
-
+<br>
 Flow: request => server => data fetch => render html in server => then render html in browser
+<br>
 Note: as two types of rendering that's why performance is slow.
 
 ### ⭐ 2. SSG – Static Site Generation
