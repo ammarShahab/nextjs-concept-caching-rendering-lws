@@ -182,7 +182,7 @@ Ans:
   <img src="/public/img/next-js-caching-strategies.jpg" width="800" />
 </p>
 
-# Elaborate caching strategy
+### Elaborate caching strategy
 
 <p align="center">
   <img src="/public/img/next-js-caching-strategies-2.png" width="800" />
