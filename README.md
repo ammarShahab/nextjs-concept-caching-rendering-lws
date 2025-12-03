@@ -7,10 +7,12 @@
 ### ⭐ 1. SSR – Server-Side Rendering
 
 HTML is generated on every request.
+<br>
 Always fetches fresh data.
-
+<br>
 Use when:
 ✔ Live data (dashboard, admin panel, real-time prices)
+<br>
 ✔ User-specific data (auth-based content)
 
 Example (Next.js App Router)
