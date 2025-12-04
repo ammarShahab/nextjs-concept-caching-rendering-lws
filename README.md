@@ -170,7 +170,7 @@ Ans:
 
 <ol>
 <li>যদি client side থেকে কোন route এ hit করে তখন নিজেকে প্রশ্ন করে আমি কি server এ যাব নাকি browser মধ্যে তা save করা আছে (যদি আমি আগে কখনও visit করে থাকি) এই question টা করে first এ router এ <strong>Router cache এ</strong> which present in client side.</li>
-<li>If the step 1 is false, then it goes to server then server will render the react tree and raise the question should i render the react tree which is asked in <strong> Full Route cache </strong>. If any one render the react tree previously on request no need to rerender it.  Here nextjs cached the previously rerendered page  in <strong> Full Route cache </strong>, if any one hit the route it sends the rerendered page (previously generated page from Full Route cache) </li>
+<li>If the step 1 is false, then it goes to server then server will render the react tree and raise the question should i render the react tree which is asked in <strong> Full Route cache </strong>. If any one render the react tree previously on request by other user or render it in a build time so no need to render it.  Here nextjs cached the previously rerendered page in <strong> Full Route cache </strong>, if any one hit the route it sends the rerendered page (previously generated page from Full Route cache) </li>
 <li>If the step 2 is false i.e it needs to render the page as the page contains multiple component where some of the component needs the multiple data fetching by fetch request or db fetching. It will ask the question to <strong> Request Memoization  </strong> about the only data fetching request output is cached in Request Memoization or need to fetch from the source?</li>
 <li>If the step 3 is false i.e it needs to fetch from the db or other source for network request. Before the network request it ask the another question that should i called network request or is cached in <strong> Data Cache </strong> in server for data fetching request output.  </li>
 <li>If the step 4 is false then it hits the api for data fetching from db or other sources. When it response the data from the source it will save the data in the  <strong> Data Cache </strong> for the next user.</li>
@@ -304,3 +304,13 @@ As the data cache is saved in build time and cannot get the updated data we use 
 <p align="center">
   <img src="/public/img/points-to-remember-data-cache.png" width="800" />
 </p>
+
+## Full Route Cache
+
+**What is React Server Component Payload (RSC Payload)?**
+
+Ans: When a server component renders in server, nextjs logs the process how it renders in the server and in client side it renders or generate the react tree using the log which is called RSC Payload without nextjs and react library.
+
+-As we know, Full Route cache render the react tree and raise the question should i render the react tree which is asked in <strong> Full Route cache </strong>. If any one render the react tree previously on request by other user or render it in a build time so no need to render it. That's why Full Route Cache works only in statically build page.
+
+4.
