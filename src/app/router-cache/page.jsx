@@ -3,7 +3,7 @@ import React from "react";
 
 // 5.0 Created RouteCache component
 
-export default function RouteCache() {
+export default function RouterCache() {
   return (
     <div className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-sm">
       <h1 className="text-3xl font-bold mb-4 text-gray-800 dark:text-white">
@@ -53,6 +53,8 @@ export default function RouteCache() {
         </Link>
         {/* 5.5.4 without prefetch in Link component i.e default Link component it will cache the static page for 5 min and for dynamic page will be 0 */}
       </div>
+
+      {/* 5.5.7 there is another way to configure this prefetch router cache behavior using next.config.js. (in video length 1:24:10)*/}
     </div>
   );
 }
