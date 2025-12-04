@@ -4,7 +4,7 @@
 -created a db.json file and paste the data from the doc
 -to run the sever "npx json-server db.json -p 8000"
 
-## run the client
+## Run the client
 
 -npm run build; npm start
 
