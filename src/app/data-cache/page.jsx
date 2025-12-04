@@ -90,7 +90,7 @@ export default async function DataCache() {
           </button>
         </form>
 
-        <Link
+        {/*   <Link
           className="border border-zinc-800 p-3 rounded hover:bg-zinc-900"
           href="/data-cache/time-based-revalidation"
         >
@@ -101,7 +101,7 @@ export default async function DataCache() {
           href="/data-cache/time-based-revalidation"
         >
           Time Based Revalidation
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

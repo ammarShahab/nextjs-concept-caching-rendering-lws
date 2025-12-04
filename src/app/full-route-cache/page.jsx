@@ -36,7 +36,7 @@ export default async function FullRouteCache() {
   // const cookieData = cookies();
   // const headersData = headers();
 
-  //4.2.1 also using cache: "no-store" to make the page dynamic in getData function.
+  // 4.2.1 also using cache: "no-store" to make the page dynamic in getData function.
   /* const products = await getData(
     "http://localhost:8000/products", {cache: "no-store"},
     "full Route Cache path - Static page"

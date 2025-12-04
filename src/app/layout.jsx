@@ -39,8 +39,8 @@ export default function RootLayout({ children }) {
               <Link href="/full-route-cache">
                 <p>Full Route Cache</p>
               </Link>
-              <Link href="/route-cache">
-                <p>Route Cache</p>
+              <Link href="/router-cache">
+                <p>Router Cache</p>
               </Link>
             </ul>
           </nav>

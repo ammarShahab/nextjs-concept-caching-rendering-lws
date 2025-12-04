@@ -169,7 +169,7 @@ Ans:
 ### Caching strategy (LWS) or Answer of the 3W 3H Framework question
 
 <ol>
-<li>যদি client side থেকে কোন route এ hit করে তখন নিজেকে প্রশ্ন করে আমি কি server এ যাব নাকি browser মধ্যে তা save করা আছে (যদি আমি আগে কখনও visit করে থাকি) এই question টা করে first এ router এ <strong>Router cache এ</strong> which present in client side.</li>
+<li>যদি client side থেকে কোন route এ hit করে তখন নিজেকে প্রশ্ন করে আমি কি server এ যাব নাকি browser মধ্যে তা save করা আছে (যদি আমি আগে কখনও visit করে থাকি) এই question টা করে first এ router এর <strong>Router cache এ</strong> which present in client side.</li>
 <li>If the step 1 is false, then it goes to server then server will render the react tree and raise the question should i render the react tree which is asked in <strong> Full Route cache </strong>. If any one render the react tree previously on request by other user or render it in a build time so no need to render it.  Here nextjs cached the previously rerendered page in <strong> Full Route cache </strong>, if any one hit the route it sends the rerendered page (previously generated page from Full Route cache) </li>
 <li>If the step 2 is false i.e it needs to render the page as the page contains multiple component where some of the component needs the multiple data fetching by fetch request or db fetching. It will ask the question to <strong> Request Memoization  </strong> about the only data fetching request output is cached in Request Memoization or need to fetch from the source?</li>
 <li>If the step 3 is false i.e it needs to fetch from the db or other source for network request. Before the network request it ask the another question that should i called network request or is cached in <strong> Data Cache </strong> in server for data fetching request output.  </li>
@@ -313,4 +313,32 @@ Ans: When a server component renders in server, nextjs logs the process how it r
 
 -As we know, Full Route cache render the react tree and raise the question should i render the react tree which is asked in <strong> Full Route cache </strong>. If any one render the react tree previously on request by other user or render it in a build time so no need to render it. That's why Full Route Cache works only in statically build page.
 
-4.
+4.0 Created a FullRouteCache component and fetch data using common api now run npm run build. Open the network tab u will see the full-route-cache. Now select the full-route-cache then select the preview u will see the log file i.e RSC Payload. Using this log react tree is generated in client side. Full Route cache ask the question should i render it or not. To render it Full Route cache needs RSC Payload and also build time generated html. In build time nextjs cache the RSC Payload and html in Full Route Cache in server. When user come and click the route and comes the RSC Payload and user see the page without render.
+
+4.1 To revalidate the data we use revalidateTag or revalidatePath function.
+
+4.2.0 If we want to avoid this page full route cache in build time we have to make the page dynamic [] or using following server side feature. After making the site dynamic now if you go to the full-route-cache page and open network tab u will find empty RSC Payload that means it's dynamic.
+
+4.2.1 also using cache: "no-store" to make the page dynamic in getData function.
+
+4.2.2 using { next: { revalidate: 0 } } to make the page dynamic in getData function
+
+4.2.3 also use "force-dynamic" to make the page dynamic
+
+**How Full Route Cache Works**
+
+For Static:
+
+<p align="center">
+  <img src="/public/img/full-route-cache-static.jpg" width="800" />
+</p>
+
+For Dynamic:
+
+<p align="center">
+  <img src="/public/img/full-route-cache-dynamic.jpg" width="800" />
+</p>
+
+## Router Cache
+
+- As we know when a user hits a url first browser ask the question should i go to the server or the cache is saved in Router cache in client side.
