@@ -4,6 +4,10 @@
 -created a db.json file and paste the data from the doc
 -to run the sever "npx json-server db.json -p 8000"
 
+## run the client
+
+-npm run build; npm start
+
 ### ⭐ 1. SSR – Server-Side Rendering
 
 HTML is generated on every request.
