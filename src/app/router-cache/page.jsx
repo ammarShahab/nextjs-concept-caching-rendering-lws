@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-// 5.0 Created RouteCache component
+// 5.0 Created Router Cache component
 
 export default function RouterCache() {
   return (
@@ -30,10 +30,10 @@ export default function RouterCache() {
         <Link
           href="/router-cache/static-page"
           className="w-full px-6 py-3 border-2 border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 transition-colors text-center"
-          // 5.5.1
+          // 5.5.1 apply prefetch={false}
           // prefetch={false}
 
-          // 5.5.5 if u set prefetch={true} it will cache for static and dynamic page for 5 min. To check it go to network tab => go to home => hard reload => go to the router-cache page => initially both static and dynamic page will be prefetch. But when u click the static and dynamic page it will not be prefetch, the both static and dynamic page will be cached in client side.
+          // 5.5.5 if u set prefetch={true} it will cache for static and dynamic page for 5 min. To check it go to network tab => go to home => hard reload => go to the router-cache page => initially both static and dynamic page will be prefetch. But when u click to go to the static and dynamic page it will not be prefetch, the both static and dynamic page will be cached in client side which is router cache.
           prefetch={true}
         >
           Static Page
@@ -43,10 +43,10 @@ export default function RouterCache() {
           className="w-full px-6 py-3 border-2 border-gray-500 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-center"
           // 5.5.3 Now build it and open network tab => go to home => hard reload => go to the router-cache page => prefetch stopped. Now if u go to the static page first time it will be prefetched in network request but second  time it will not be prefetched because it is cached in client side but the dynamic page will be prefetched in network request.
 
-          // 5.5.2
+          // 5.5.2 apply prefetch={false}
           // prefetch={false}
 
-          // 5.5.6
+          // 5.5.6 apply prefetch={true}
           prefetch={true}
         >
           Dynamic Page
