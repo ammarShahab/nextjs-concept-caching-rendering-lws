@@ -491,6 +491,8 @@ For Dynamic:
 
 5.5.7 there is another way to configure this prefetch router cache behavior using next.config.js. (in video length 1:24:10)
 
+<br>
+
 **Following is the caching strategies in a Chart**
 
 <p align="center">
