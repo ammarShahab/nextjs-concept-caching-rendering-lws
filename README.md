@@ -151,41 +151,41 @@ Ans: url is hit => request go to server => server fetch data from database and c
 
 ```txt
 ┌───────────────────────────┐
-│ 1. User enters a URL       │
+│ 1. User enters a URL      │
 └─────────────┬─────────────┘
               │
               ▼
 ┌───────────────────────────┐
-│ 2. Browser sends request   │
-│    to the server           │
+│ 2. Browser sends request  │
+│    to the server          │
 └─────────────┬─────────────┘
               │
               ▼
 ┌───────────────────────────┐
-│ 3. Server fetches data     │
-│    (Database / API)        │
+│ 3. Server fetches data    │
+│    (Database / API)       │
 └─────────────┬─────────────┘
               │
               ▼
 ┌───────────────────────────┐
-│ 4. Server creates the      │
-│    complete webpage        │
-│    → HTML                  │
-│    → CSS                   │
-│    → JavaScript files      │
+│ 4. Server creates the     │
+│    complete webpage       │
+│    → HTML                 │
+│    → CSS                  │
+│    → JavaScript files     │
 └─────────────┬─────────────┘
               │
               ▼
 ┌───────────────────────────┐
-│ 5. Server sends response   │
-│    (HTML + CSS + JS)       │
+│ 5. Server sends response  │
+│    (HTML + CSS + JS)      │
 └─────────────┬─────────────┘
               │
               ▼
 ┌───────────────────────────┐
-│ 6. Browser displays HTML   │
-│    immediately             │
-│    (non-interactive)       │
+│ 6. Browser displays HTML  │
+│    immediately            │
+│    (non-interactive)      │
 └─────────────┬─────────────┘
               │
               ▼
@@ -496,5 +496,5 @@ For Dynamic:
 **Following is the caching strategies in a Chart**
 
 <p align="center">
-  <img src="/public/img/nextjs-caching-strategies-chart.png" width="800" />
+  <img src="/public/img/nextjs-caching-strategies-chart.png" width="1200" />
 </p>
