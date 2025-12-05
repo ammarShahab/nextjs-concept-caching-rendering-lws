@@ -147,9 +147,129 @@ Flow: Request => Fetch Data => parse backend data => Render in browser
 
 Ans: url is hit => request go to server => server fetch data from database and creates webpage => in response server sends the html, css and useful javascript in browser (Note: Javascript is not rendered in server, it renders in browser to make the page interactive. The process of page interactive when javascript renders in browser is called Hydration)
 
+**Following is the diagramatical view**
+
+```txt
+┌───────────────────────────┐
+│ 1. User enters a URL       │
+└─────────────┬─────────────┘
+              │
+              ▼
+┌───────────────────────────┐
+│ 2. Browser sends request   │
+│    to the server           │
+└─────────────┬─────────────┘
+              │
+              ▼
+┌───────────────────────────┐
+│ 3. Server fetches data     │
+│    (Database / API)        │
+└─────────────┬─────────────┘
+              │
+              ▼
+┌───────────────────────────┐
+│ 4. Server creates the      │
+│    complete webpage        │
+│    → HTML                  │
+│    → CSS                   │
+│    → JavaScript files      │
+└─────────────┬─────────────┘
+              │
+              ▼
+┌───────────────────────────┐
+│ 5. Server sends response   │
+│    (HTML + CSS + JS)       │
+└─────────────┬─────────────┘
+              │
+              ▼
+┌───────────────────────────┐
+│ 6. Browser displays HTML   │
+│    immediately             │
+│    (non-interactive)       │
+└─────────────┬─────────────┘
+              │
+              ▼
+┌─────────────────────────────────┐
+│ 7. Browser downloads & runs JS  │
+│    → adds interactivity         │
+│    → this is called HYDRATION   │
+└─────────────────────────────────┘
+```
+
 ### What is the react and nextjs rendering process (LWS)?
 
 Ans: url is hit => request go to server => server fetch data from database => in server generates react tree which contains both server component (e.g. show data, creates html, css) and client component (e.g. Button) => Nextjs renders server component in server i.e creates html and sends to the browser and to generate the react tree in the browser nextjs sends a file which creates a react tree without using react or next.js which is called RSC Payload (it's a kind of a log book which contains process of how nextjs generates the component in server). So in the browser there is no use of react or next.js library and on the other hand server also sends the client component as an empty box to the browser with essential js, also sends react or next.js library to convert the jsx to html in browser.
+
+**Following is the diagramatical view**
+
+```txt
+
+┌────────────────────────┐
+│ 1. User hits the URL   │
+└───────────┬────────────┘
+            │
+            ▼
+┌────────────────────────┐
+│ 2. Request goes to     │
+│    the Next.js server  │
+└───────────┬────────────┘
+            │
+            ▼
+┌────────────────────────┐
+│ 3. Server fetches      │
+│    data (DB/API)       │
+└───────────┬────────────┘
+            │
+            ▼
+┌────────────────────────────────────────────┐
+│ 4. Server Builds the React Component Tree  │
+│                                            │
+│   • Server Components (RSC)                │
+│       - fetch data                         │
+│       - generate HTML + CSS                │
+│                                            │
+│   • Client Components                      │
+│       - interactive UI (buttons, forms)    │
+└───────────┬────────────────────────────────┘
+            │
+            ▼
+┌────────────────────────────────────────────┐
+│ 5. Next.js Renders Server Components (RSC) │
+│    → Produces HTML on the server           │
+└───────────┬────────────────────────────────┘
+            │
+            ▼
+┌────────────────────────────────────────────┐
+│ 6. Server sends to Browser:                │
+│                                            │
+│   ✅ HTML (from Server Components)         │
+│   ✅ RSC Payload                           │
+│      - a log/instruction file describing   │
+│        how to rebuild the React tree       │
+│      - NOTE: Does NOT include React code   │
+│                                            │
+│   ✅ Client Components as empty shells     │
+│      - server sends only the placeholders  │
+│                                            │
+│   ✅ React + Next.js JS for hydration      │
+└───────────┬────────────────────────────────┘
+            │
+            ▼
+┌────────────────────────────────────────────┐
+│ 7. Browser Stage                           │
+│                                            │
+│   • Browser shows HTML instantly           │
+│                                            │
+│   • React + Next.js JS loads               │
+│     → hydrates Client Components           │
+│     → makes them interactive               │
+│                                            │
+│   • RSC Payload helps browser rebuild      │
+│     the same component tree without        │
+│     running React on the server again      │
+└────────────────────────────────────────────┘
+
+```
 
 What is RSC - React Server Component?
 Flow: server fetches the data => serializable payload (i.e data is send as chunk) => in client side minimum js is loaded which increase the performance
@@ -370,3 +490,9 @@ For Dynamic:
 5.5.5 if u set prefetch={true} it will cache for static and dynamic page for 5 min. To check it go to network tab => go to home => hard reload => go to the router-cache page => initially both static and dynamic page will be prefetch. But when u click to go to the static and dynamic page it will not be prefetch, the both static and dynamic page will be cached in client side which is router cache.
 
 5.5.7 there is another way to configure this prefetch router cache behavior using next.config.js. (in video length 1:24:10)
+
+**Following is the caching strategies in a Chart**
+
+<p align="center">
+  <img src="/public/img/nextjs-caching-strategies-chart.png" width="800" />
+</p>
