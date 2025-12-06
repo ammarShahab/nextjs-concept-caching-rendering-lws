@@ -2,6 +2,6 @@
   "products": [
     { "id": "1", "title": "Apple iPhone 10", "price": 799 },
     { "id": "2", "title": "Apple iPhone 16 Plus", "price": 899 },
-    { "id": "3", "title": "Apple iPhone 12s", "price": 900 }
+    { "id": "3", "title": "Apple iPhone 10s", "price": 900 }
   ]
 }

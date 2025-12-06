@@ -6,7 +6,7 @@ import { cookies, headers } from "next/headers";
 import next from "next";
 
 // 4.2.3 also use "force-dynamic" to make the page dynamic
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 // 4.0 Created a FullRouteCache component and fetch data using common api now run npm run build. Open the network tab u will see the full-route-cache. Now select the full-route-cache then select the preview u will see the log file i.e RSC Payload. Using this log react tree is generated in client side. Full Route cache ask the question should i render it or not. To render it Full Route cache needs RSC Payload and also build time generated html. In build time nextjs cache the RSC Payload and html in Full Route Cache in server. When user come and click the route and comes the RSC Payload and user see the page without render.
 export default async function FullRouteCache() {
