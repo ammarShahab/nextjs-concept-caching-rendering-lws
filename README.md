@@ -463,9 +463,21 @@ For Dynamic:
   <img src="/public/img/full-route-cache-dynamic.jpg" width="800" />
 </p>
 
-## Router Cache
+## Router Cache (Client Side)
 
 -As we know when a user hits a url first browser ask the question should i go to the server or the cache is saved in Router cache in client side.
+
+**How Router cache works**
+
+Next.js has an in-memory client-side router cache that stores the RSC payload of route segments, split by layouts, loading states, and pages.
+
+When a user navigates between routes, Next.js caches the visited route segments and prefetches the routes the user is likely to navigate to. This results in instant back/forward navigation, no full-page reload between navigations, and preservation of browser state and React state in shared layouts.
+
+With the Router Cache:
+
+-Layouts are cached and reused on navigation (partial rendering).
+-Loading states are cached and reused on navigation for instant navigation.
+-Pages are not cached by default, but are reused during browser backward and forward navigation. You can enable caching for page segments by using the experimental staleTimes config option.
 
 5.0 Created Router Cache component
 
