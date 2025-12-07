@@ -475,33 +475,33 @@ When a user navigates between routes, Next.js caches the visited route segments 
 
 With the Router Cache:
 
--Layouts are cached and reused on navigation (partial rendering).
--Loading states are cached and reused on navigation for instant navigation.
--Pages are not cached by default, but are reused during browser backward and forward navigation. You can enable caching for page segments by using the experimental staleTimes config option.
+- Layouts are cached and reused on navigation (partial rendering).
+- Loading states are cached and reused on navigation for instant navigation.
+- Pages are not cached by default, but are reused during browser backward and forward navigation. You can enable caching for page segments by using the experimental staleTimes config option.
 
-5.0 Created Router Cache component
+  5.0 Created Router Cache component
 
-5.1 Created link for static and dynamic page
+  5.1 Created link for static and dynamic page
 
-5.2 Created RouterCacheStatic page component
+  5.2 Created RouterCacheStatic page component
 
-5.3 Created RouterCacheDynamic page component and force dynamic then build
+  5.3 Created RouterCacheDynamic page component and force dynamic then build
 
-5.4 Now go to network go to home page, hard reload the page then go to Router Cache page and see without clicking the Static Page and Dynamic Page it already fetched in the network request. Because in nextjs Link component prefetched the Link component due user can click it anytime. This is the nextjs default prefetching behavior.
+  5.4 Now go to network go to home page, hard reload the page then go to Router Cache page and see without clicking the Static Page and Dynamic Page it already fetched in the network request. Because in nextjs Link component prefetched the Link component due user can click it anytime. This is the nextjs default prefetching behavior.
 
-5.5 If we don't want to prefetch the Link component we can control this behavior using prefetch={false}
+  5.5 If we don't want to prefetch the Link component we can control this behavior using prefetch={false}
 
-5.5.1 apply prefetch={false}
+  5.5.1 apply prefetch={false}
 
-5.5.2 apply prefetch={false}
+  5.5.2 apply prefetch={false}
 
-5.5.3 Now build it and open network tab => go to home => hard reload => go to the router-cache page => prefetch stopped. Now if u go to the static page first time it will be prefetched in network request but second time it will not be prefetched because it is cached in client side but the dynamic page will be prefetched in network request.
+  5.5.3 Now build it and open network tab => go to home => hard reload => go to the router-cache page => prefetch stopped. Now if u go to the static page first time it will be prefetched in network request but second time it will not be prefetched because it is cached in client side but the dynamic page will be prefetched in network request.
 
-5.5.4 without prefetch in Link component i.e default Link component it will cache the static page for 5 min and for dynamic page will be 0
+  5.5.4 without prefetch in Link component i.e default Link component it will cache the static page for 5 min and for dynamic page will be 0
 
-5.5.5 if u set prefetch={true} it will cache for static and dynamic page for 5 min. To check it go to network tab => go to home => hard reload => go to the router-cache page => initially both static and dynamic page will be prefetch. But when u click to go to the static and dynamic page it will not be prefetch, the both static and dynamic page will be cached in client side which is router cache.
+  5.5.5 if u set prefetch={true} it will cache for static and dynamic page for 5 min. To check it go to network tab => go to home => hard reload => go to the router-cache page => initially both static and dynamic page will be prefetch. But when u click to go to the static and dynamic page it will not be prefetch, the both static and dynamic page will be cached in client side which is router cache.
 
-5.5.7 there is another way to configure this prefetch router cache behavior using next.config.js. (in video length 1:24:10)
+  5.5.7 there is another way to configure this prefetch router cache behavior using next.config.js. (in video length 1:24:10)
 
 <br>
 
