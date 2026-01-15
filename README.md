@@ -344,10 +344,10 @@ Note: In request memoization data is not cached, only the promise is cached in R
   <img src="/public/img/request-memoiztion.png" width="800" />
 </p>
 
--While rendering a route, the first time a particular request is called, its result will not be in memory and it'll be a cache MISS.
--Therefore, the function will be executed, and the data will be fetched from the external source, and the result will be stored in memory.
--Subsequent function calls of the request in the same render pass will be a cache HIT, and the data will be returned from memory without executing the function.
--Once the route has been rendered and the rendering pass is complete, memory is "reset" and all request memoization entries are cleared.
+- While rendering a route, the first time a particular request is called, its result will not be in memory and it'll be a cache MISS.
+- Therefore, the function will be executed, and the data will be fetched from the external source, and the result will be stored in memory.
+- Subsequent function calls of the request in the same render pass will be a cache HIT, and the data will be returned from memory without executing the function.
+- Once the route has been rendered and the rendering pass is complete, memory is "reset" and all request memoization entries are cleared.
 
 ### Data Cache
 
@@ -359,20 +359,20 @@ Note: In request memoization data is not cached, only the promise is cached in R
   <img src="/public/img/data-cache.png" width="800" />
 </p>
 
--The first time a fetch request with the 'force-cache' option is called during rendering, Next.js checks the Data Cache for a cached response.
--If a cached response is found, it's returned immediately and memoized.
--If a cached response is not found, the request is made to the data source, the result is stored in the Data Cache, and memoized.
--For uncached data (e.g. no cache option defined or using { cache: 'no-store' }), the result is always fetched from the data source, and memoized.
--Whether the data is cached or uncached, the requests are always memoized to avoid making duplicate requests for the same data during a React render pass.
+- The first time a fetch request with the 'force-cache' option is called during rendering, Next.js checks the Data Cache for a cached response.
+- If a cached response is found, it's returned immediately and memoized.
+- If a cached response is not found, the request is made to the data source, the result is stored in the Data Cache, and memoized.
+- For uncached data (e.g. no cache option defined or using { cache: 'no-store' }), the result is always fetched from the data source, and memoized.
+- Whether the data is cached or uncached, the requests are always memoized to avoid making duplicate requests for the same data during a React render pass.
 
-3.1 Data cache is revalidate in 2 ways.
-i. Time based revalidation
-ii. on demand revalidation
+  3.1 Data cache is revalidate in 2 ways.
+  i. Time based revalidation
+  ii. on demand revalidation
 
-3.2.0 Time based revalidation:
-As the data cache is saved in build time and cannot get the updated data we use time based revalidation i.e data will be revalidated on the basis of time.
+  3.2.0 Time based revalidation:
+  As the data cache is saved in build time and cannot get the updated data we use time based revalidation i.e data will be revalidated on the basis of time.
 
-3.2.1 Time based revalidation route created then run build command. Now if u hit to that route it will go the time based revalidation page. now change the data in db.json and reload, u will not see the updated data at once but after 30 seconds u will see the updated data.
+  3.2.1 Time based revalidation route created then run build command. Now if u hit to that route it will go the time based revalidation page. now change the data in db.json and reload, u will not see the updated data at once but after 30 seconds u will see the updated data.
 
 **How Time-based Revalidation Works**
 
@@ -380,19 +380,19 @@ As the data cache is saved in build time and cannot get the updated data we use 
   <img src="/public/img/time-based-revalidation.png" width="800" />
 </p>
 
--The first time a fetch request with revalidate is called, the data will be fetched from the external data source and stored in the Data Cache.
--Any requests that are called within the specified timeframe (e.g. 60-seconds) will return the cached data.
--After the timeframe, the next request will still return the cached (now stale) data.
-=>Next.js will trigger a revalidation of the data in the background.
-=>Once the data is fetched successfully, Next.js will update the Data Cache with the fresh data.
-=>If the background revalidation fails, the previous data will be kept unaltered.
+- The first time a fetch request with revalidate is called, the data will be fetched from the external data source and stored in the Data Cache.
+- Any requests that are called within the specified timeframe (e.g. 60-seconds) will return the cached data.
+- After the timeframe, the next request will still return the cached (now stale) data.
+  =>Next.js will trigger a revalidation of the data in the background.
+  =>Once the data is fetched successfully, Next.js will update the Data Cache with the fresh data.
+  =>If the background revalidation fails, the previous data will be kept unaltered.
 
-3.3.0 On demand revalidation:
-As the data cache is saved in build time and cannot get the updated data we use also on demand revalidation i.e data will be revalidated on the basis of revalidate tag or path which is based on server action.
+  3.3.0 On demand revalidation:
+  As the data cache is saved in build time and cannot get the updated data we use also on demand revalidation i.e data will be revalidated on the basis of revalidate tag or path which is based on server action.
 
-3.3.1 On demand revalidation using revalidatePath i.e revalidate only the path. so create a server action using onRevalidatePath function.
+  3.3.1 On demand revalidation using revalidatePath i.e revalidate only the path. so create a server action using onRevalidatePath function.
 
-3.3.2 call the onRevalidatePath function. Now build command run and hit to the On Revalidate Path button, u will see the updated data on clicking the button.
+  3.3.2 call the onRevalidatePath function. Now build command run and hit to the On Revalidate Path button, u will see the updated data on clicking the button.
 
 <p align="center">
   No Picture
@@ -407,10 +407,10 @@ As the data cache is saved in build time and cannot get the updated data we use 
   <img src="/public/img/on-demand-revalidation.png" width="800" />
 </p>
 
--The first time a fetch request is called, the data will be fetched from the external data source and stored in the Data Cache.
--When an on-demand revalidation is triggered, the appropriate cache entries will be purged from the cache.
-=>This is different from time-based revalidation, which keeps the stale data in the cache until the fresh data is fetched.
--The next time a request is made, it will be a cache MISS again, and the data will be fetched from the external data source and stored in the Data Cache.
+- The first time a fetch request is called, the data will be fetched from the external data source and stored in the Data Cache.
+- When an on-demand revalidation is triggered, the appropriate cache entries will be purged from the cache.
+  =>This is different from time-based revalidation, which keeps the stale data in the cache until the fresh data is fetched.
+- The next time a request is made, it will be a cache MISS again, and the data will be fetched from the external data source and stored in the Data Cache.
 
 ### Data cache for dynamic page
 
@@ -436,19 +436,19 @@ As the data cache is saved in build time and cannot get the updated data we use 
 
 Ans: When a server component renders in server, nextjs logs the process how it renders in the server and in client side it renders or generate the react tree using the log which is called RSC Payload without nextjs and react library.
 
--As we know, Full Route cache render the react tree and raise the question should i render the react tree which is asked in <strong> Full Route cache </strong>. If any one render the react tree previously on request by other user or render it in a build time so no need to render it. That's why Full Route Cache works only in statically build page.
+- As we know, Full Route cache render the react tree and raise the question should i render the react tree which is asked in <strong> Full Route cache </strong>. If any one render the react tree previously on request by other user or render it in a build time so no need to render it. That's why Full Route Cache works only in statically build page.
 
-4.0 Created a FullRouteCache component and fetch data using common api now run npm run build. Open the network tab u will see the full-route-cache. Now select the full-route-cache then select the preview u will see the log file i.e RSC Payload. Using this log react tree is generated in client side. Full Route cache ask the question should i render it or not. To render it Full Route cache needs RSC Payload and also build time generated html. In build time nextjs cache the RSC Payload and html in Full Route Cache in server. When user come and click the route and comes the RSC Payload and user see the page without render.
+  4.0 Created a FullRouteCache component and fetch data using common api now run npm run build. Open the network tab u will see the full-route-cache. Now select the full-route-cache then select the preview u will see the log file i.e RSC Payload. Using this log react tree is generated in client side. Full Route cache ask the question should i render it or not. To render it Full Route cache needs RSC Payload and also build time generated html. In build time nextjs cache the RSC Payload and html in Full Route Cache in server. When user come and click the route and comes the RSC Payload and user see the page without render.
 
-4.1 To revalidate the data we use revalidateTag or revalidatePath function.
+  4.1 To revalidate the data we use revalidateTag or revalidatePath function.
 
-4.2.0 If we want to avoid this page full route cache in build time we have to make the page dynamic [] or using following server side feature. After making the site dynamic now if you go to the full-route-cache page and open network tab u will find empty RSC Payload that means it's dynamic.
+  4.2.0 If we want to avoid this page full route cache in build time we have to make the page dynamic [] or using following server side feature. After making the site dynamic now if you go to the full-route-cache page and open network tab u will find empty RSC Payload that means it's dynamic.
 
-4.2.1 also using cache: "no-store" to make the page dynamic in getData function.
+  4.2.1 also using cache: "no-store" to make the page dynamic in getData function.
 
-4.2.2 using { next: { revalidate: 0 } } to make the page dynamic in getData function
+  4.2.2 using { next: { revalidate: 0 } } to make the page dynamic in getData function
 
-4.2.3 also use "force-dynamic" to make the page dynamic
+  4.2.3 also use "force-dynamic" to make the page dynamic
 
 **How Full Route Cache Works**
 
@@ -466,7 +466,7 @@ For Dynamic:
 
 ## Router Cache (Client Side)
 
--As we know when a user hits a url first browser ask the question should i go to the server or the cache is saved in Router cache in client side.
+- As we know when a user hits a url first browser ask the question should i go to the server or the cache is saved in Router cache in client side.
 
 **How Router cache works**
 
