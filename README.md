@@ -341,7 +341,7 @@ Note: In request memoization data is not cached, only the promise is cached in R
 **How Request Memoization Works**
 
 <p align="center">
-  <img src="/public/img/request-memoization.avif" width="800" />
+  <img src="/public/img/request-memoiztion.png" width="800" />
 </p>
 
 -While rendering a route, the first time a particular request is called, its result will not be in memory and it'll be a cache MISS.

@@ -10,9 +10,9 @@ import next from "next";
 export async function generateMetadata() {
   const products = await getData(
     "http://localhost:8000/products",
-    "generateMetadata()",
-    // 2.5.0 Check request Memoization for dynamic pages. as the page is static the request memoization is also worked for dynamic (SSR) pages. By default nextjs cache is "force-cache" but if we use "no-store" then it will also cache the request for the dynamic pages.
-    { cache: "no-store" }
+    "generateMetadata()"
+    // 2.5.0 Check request Memoization for dynamic pages. as the page is static the request memoization is also worked for dynamic (SSR) pages. By default nextjs cache is "force-cache" but if we use "no-store" then it will also cache the request as like as static pages in 2.4 method which is explained in 2.5.4
+    // { cache: "no-store" }
   );
   return {
     title: products.reduce(
@@ -24,15 +24,15 @@ export async function generateMetadata() {
 }
 // console.log(generateMetadata());
 
-// 2.0 To understand request memoization in Next.js we create RequestMemoization component and fetch data using common api
+// 2.0 To understand request memoization for static pages (SSG) in Next.js we create RequestMemoization component and fetch data using common api
 
 export default async function RequestMemoization() {
   const products = await getData(
     "http://localhost:8000/products",
-    "Page",
+    "Page"
     // 2.5.3 Check request Memoization for dynamic pages.
-    { cache: "no-store" }
-    // 2.5.4 now run build and u will see the "ƒ /request-memoization" in the terminal which means it is dynamic. Now we go to the Request Memoization then see in the vs code terminal we will see [generateMetadata()] and [Page] level data fetching network request took longer time but the [TotalPrice] and [ProductCount] level data fetching network request took less time for request memoization. Request memoization also works for dynamic pages. But this type of cache is temporary as if we use "no-store". Now if we go to another route and return to the Request Memoization Route we will see only [generateMetadata()] and [Page] level network request for every time route changes due to temporary cache but less network latency for [TotalPrice] and [ProductCount] as it memorize the request. But if we comment the "no-store" i.e is make it "force-cache" and change the data from the db.json it will show the stale data.
+    // { cache: "no-store" }
+    // 2.5.4 now run build and u will see the "ƒ /request-memoization" in the terminal which means it is dynamic (SSR). Now we go to the Request Memoization then see in the vs code terminal we will see [generateMetadata()] and [Page] level data fetching network request took longer time but the [TotalPrice] and [ProductCount] level data fetching network request took less time for request memoization. Request memoization also works for dynamic pages. But this type of cache is temporary as if we use "no-store". Now if we go to another route and return to the Request Memoization Route we will see only [generateMetadata()] and [Page] level network request for every time route changes due to temporary cache but less network latency for [TotalPrice] and [ProductCount] as it memorize the request. But if we comment the "no-store" i.e is make it "force-cache" and change the data from the db.json it will show the stale data.
     // Note: In request memoization data is not cached, only the promise is cached in Request Memoization. This is the promise which will get the during same network request call for the [TotalPrice] and [ProductCount]. Request memoization works in react tree only -  generateMetadata, generateStaticPrams, layout.js, page.js, etc. But other server components like route handlers or api routes, request memoization doesn't work. It will also not works in next js middleware. Because they are the outside of react tree. Also next.js fetch caching feature is also not worked in middleware of next.js.
   );
 

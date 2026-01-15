@@ -5,9 +5,9 @@ export default async function ProductCount() {
   // 2.2 also created ProductCount component and fetch data using common api
   const products = await getData(
     "http://localhost:8000/products",
-    "ProductCount",
+    "ProductCount"
     // 2.5.1 Check request Memoization for dynamic pages.
-    { cache: "no-store" }
+    // { cache: "no-store" }
   );
   return (
     <div>
