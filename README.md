@@ -259,14 +259,13 @@ Ans: url is hit => request go to server => server fetch data from database => in
 │ 7. Browser Stage                           │
 │                                            │
 │   • Browser shows HTML instantly           │
+|   • RSC Payload helps browser rebuild      │
+│     the same component tree without        │
+│     running React on the server again      │
 │                                            │
 │   • React + Next.js JS loads               │
 │     → hydrates Client Components           │
 │     → makes them interactive               │
-│                                            │
-│   • RSC Payload helps browser rebuild      │
-│     the same component tree without        │
-│     running React on the server again      │
 └────────────────────────────────────────────┘
 
 ```
