@@ -313,6 +313,7 @@ Ans:
 
 ### Request Memoization
 
+Note: To run the sever "npx json-server db.json -p 8000"
 1.0 first create common api and added duration to calculate the time during build time
 
 2.0 To understand request memoization in Next.js we create RequestMemoization component and fetch data using common api
