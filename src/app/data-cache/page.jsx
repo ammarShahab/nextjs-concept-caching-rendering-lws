@@ -1,11 +1,11 @@
-import React from "react";
+import React, { cache } from "react";
 import { getData } from "../utils/api-helper";
 import next from "next";
 import Link from "next/link";
 import { revalidatePath, revalidateTag } from "next/cache";
 
 export default async function DataCache() {
-  // 3.0 also created DataCache component and fetch data using common api fetch is used in a tag.As we know in nextjs we can give tag for fetch request. Data cache is ask question, as i have to  perform request call before that the data is saved in cache or i will perform network request? Now run npm run build. Then go to the db.json and change any data now go to the data-cache page and reload u will not get the updated data. Because the data is cached in build time and showing the data from the cache i.e stale data.
+  // 3.0 also created DataCache component and fetch data using common api fetch is used with cache:"force-cache" because in nextjs 16 cache is by default "cache: 'no-store" i.e dynamic we also used tag as we know in nextjs we can give tag for fetch request which will later used for on-demand revalidation. Data cache is ask question, as i have to  perform request call before that the data is saved in cache or i will perform network request? Now run npm run build. Then go to the db.json and change any data now go to the data-cache page and reload u will not get the updated data because the data is force-cached in build time showing the data from the cache i.e stale data.
 
   // 3.1 Data cache is revalidate in 2 ways.
   // i. Time based revalidation
@@ -15,10 +15,11 @@ export default async function DataCache() {
     "http://localhost:8000/products",
     "DataCache - Static Page",
     {
+      cache: "force-cache",
       next: {
         tags: ["products"],
       },
-    }
+    },
   );
 
   //   3.3.0 On demand revalidation:
@@ -46,7 +47,7 @@ export default async function DataCache() {
     <div>
       <h1 className="font-bold text-4xl">Data Cache - Static page</h1>
       <div className="mt-6">
-        This page is statically rendered in{" "}
+        This page is statically rendered in {console.log(products)};
         <span className="text-blue-400">build time</span>.
       </div>
       <div className="flex flex-col gap-10 mt-10 border rounded border-zinc-900 p-10">
@@ -72,14 +73,16 @@ export default async function DataCache() {
         </Link>
 
         {/* 3.3.2 call the onRevalidatePath function. Now build command run and hit to the On Revalidate Path button, u will see the updated data on clicking the button.*/}
-        <form action={onRevalidatePath}>
-          <button
-            className="border border-zinc-800 p-3 rounded cursor-pointer hover:bg-zinc-900 hover:text-white"
-            type="submit"
-          >
-            On Revalidate Path
-          </button>
-        </form>
+        {
+          <form action={onRevalidatePath}>
+            <button
+              className="border border-zinc-800 p-3 rounded cursor-pointer hover:bg-zinc-900 hover:text-white"
+              type="submit"
+            >
+              On Revalidate Path
+            </button>
+          </form>
+        }
         {/* 3.3.4 call the onRevalidateTag function. Now build command run and hit to the On Revalidate Tag button, u will see the updated data on clicking the button. i.s keeping the page static we will update the data dynamically that's the power of Next.js*/}
         <form action={onRevalidateTag}>
           <button
