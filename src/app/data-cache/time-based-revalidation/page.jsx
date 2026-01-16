@@ -8,7 +8,7 @@ export default async function TimeBasedRevalidation() {
   const products = await getData(
     "http://localhost:8000/products",
     "time-based-revalidation path",
-    { next: { revalidate: REVALIDATE_SECONDS } }
+    { next: { revalidate: REVALIDATE_SECONDS } },
   );
 
   return (

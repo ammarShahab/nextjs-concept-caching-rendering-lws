@@ -1,6 +1,6 @@
 {
   "products": [
-    { "id": "1", "title": "Apple iPhone 1", "price": 799 },
+    { "id": "1", "title": "Apple iPhone 14 Pro Max 128GB", "price": 799 },
     { "id": "2", "title": "Apple iPhone 16 Plus", "price": 899 },
     { "id": "3", "title": "Apple iPhone 10s", "price": 900 }
   ]
