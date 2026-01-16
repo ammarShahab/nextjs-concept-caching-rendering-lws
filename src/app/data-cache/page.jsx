@@ -48,7 +48,7 @@ export default async function DataCache() {
       <h1 className="font-bold text-4xl">Data Cache - Static page</h1>
       <div className="mt-6">
         This page is statically rendered in {console.log(products)};
-        <span className="text-blue-400">build time</span>.
+        <span className="text-blue-400">build time using force-cache</span>.
       </div>
       <div className="flex flex-col gap-10 mt-10 border rounded border-zinc-900 p-10">
         <div className="flex gap-6">

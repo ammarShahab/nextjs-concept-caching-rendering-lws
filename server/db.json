@@ -2,6 +2,10 @@
   "products": [
     { "id": "1", "title": "Apple iPhone 14 Pro Max 128GB 2024", "price": 500 },
     { "id": "2", "title": "Apple iPhone 16 Pro Max 256GB 2025", "price": 900 },
-    { "id": "3", "title": "Apple iPhone 10s", "price": 900 }
+    {
+      "id": "3",
+      "title": "Apple iPhone 10S Max",
+      "price": 60
+    }
   ]
 }

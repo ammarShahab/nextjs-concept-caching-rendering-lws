@@ -8,11 +8,12 @@ import next from "next";
 // 4.2.3 also use "force-dynamic" to make the page dynamic
 // export const dynamic = "force-dynamic";
 
-// 4.0 Created a FullRouteCache component and fetch data using common api now run npm run build. Open the network tab u will see the full-route-cache. Now select the full-route-cache then select the preview u will see the log file i.e RSC Payload. Using this log react tree is generated in client side. Full Route cache ask the question should i render it or not. To render it Full Route cache needs RSC Payload and also build time generated html. In build time nextjs cache the RSC Payload and html in Full Route Cache in server. When user come and click the route and comes the RSC Payload and user see the page without render.
+// 4.0 Created a FullRouteCache component and fetch data using common api and using cache: "force-cache" make the page static Because from Next.js 16 cache is by default "no-store" i.e dynamic. Now run npm run build. Open the network tab and reload the page u will see the full-route-cache. Now select the full-route-cache then select the preview u will see the log file i.e RSC Payload. Using this log react tree is generated in client side. Full Route cache ask the question should i render it or not. To render it Full Route cache needs RSC Payload and also build time generated html. In build time nextjs cache the RSC Payload and html in Full Route Cache in server. When user come and click the route and comes the RSC Payload and user see the page without render. Now if u change the data from the db.json and reload the page u will not see the updated data because the data is force-cached in build time and showing the data from the cache i.e stale data. The page is now SSG – Static Site Generation. But there is a problem if i hard reload or from data-cache rooute revalidate with any of the process will update the static full route cache page data. I think when a data cache sends the on demand revalidate request it will update all the same updated data if the page is static i.e full route cache page. Next 4.1 -4.2.3 should be  deleted or omited because it's not required.
 export default async function FullRouteCache() {
   const products = await getData(
     "http://localhost:8000/products",
-    "full Route Cache path - Static page"
+    "full Route Cache path - Static page",
+    { cache: "force-cache" },
   );
 
   // 4.1 To revalidate the data we use revalidateTag or revalidatePath function.
@@ -39,13 +40,13 @@ export default async function FullRouteCache() {
   // 4.2.1 also using cache: "no-store" to make the page dynamic in getData function.
   /* const products = await getData(
     "http://localhost:8000/products", {cache: "no-store"},
-    "full Route Cache path - Static page"
+    "full Route Cache path - Dynamic page"
   ); */
 
   // 4.2.2 using { next: { revalidate: 0 } } to make the page dynamic in getData function.
   /* const products = await getData(
     "http://localhost:8000/products",
-    "full Route Cache path - Static page",
+    "full Route Cache path - Dynamic page",
     { next: { revalidate: 0 } }
   );
  */
