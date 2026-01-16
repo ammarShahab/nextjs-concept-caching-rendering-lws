@@ -5,7 +5,7 @@ import Link from "next/link";
 import { revalidatePath, revalidateTag } from "next/cache";
 
 export default async function DataCache() {
-  // 3.0 also created DataCache component and fetch data using common api fetch is used with cache:"force-cache" because in nextjs 16 cache is by default "cache: 'no-store" i.e dynamic we also used tag as we know in nextjs we can give tag in fetch request which will later used for on-demand revalidation. Data cache is ask question, as i have to  perform request call before that the data is saved in cache or i will perform network request? Now run npm run build. Then go to the db.json and change any data now go to the data-cache page and reload u will not get the updated data because the data is force-cached in build time and showing the data from the cache i.e stale data.
+  // 3.0 also created DataCache component and fetch data using common api fetch is used with cache:"force-cache" because in nextjs 16 cache is by default "cache: 'no-store" i.e dynamic. We also used tag as we know in nextjs we can give tag in fetch request which will later used for on-demand revalidation. Data cache is ask question, as i have to  perform request call before that the data is saved in cache or i will perform network request? Now run npm run build. Then go to the db.json and change any data now go to the data-cache page and reload u will not get the updated data because the data is force-cached in build time and showing the data from the cache i.e stale data. The page is now SSG – Static Site Generation.
 
   // 3.1 Data cache is revalidate in 2 ways.
   // i. Time based revalidation

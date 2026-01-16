@@ -5,22 +5,22 @@ import { revalidateTag, updateTag } from "next/cache";
 export default async function DataCacheDynamic({ params }) {
   const { id } = await params;
 
-  //   3.4.1 we will fetch the data using common api and used tag for revalidation and use force cache to for save the data because as it is a dynamic page it will automatically fetch the data by network request. now run npm run build and change data of other Products from the db.json file and reload u will not get the updated data in the other products section. Because the data is cached in build time and showing the data from the cache as being dynamic page. if u select the updated product will get the selected product's updated data.
+  //   3.4.1 we will fetch the data using common api and used tag for revalidation later and use force cache to for save the data in the data cache during build time. because as it is a dynamic page it will automatically fetch the data by network request. now run npm run build and change data of other Products from the db.json file and reload u will not get the updated data in the other products section. Because the data is cached in build time and showing the data from the cache as being dynamic page.
   const products = await getData(
     `http://localhost:8000/products`,
     "DataCache - Dynamic Page",
 
-    { cache: "force-cache", next: { tags: ["products"] } }
+    { cache: "force-cache", next: { tags: ["products"] } },
   );
 
   const otherProducts = products.filter(
-    (product) => product.id.toString() !== id
+    (product) => product.id.toString() !== id,
   );
 
-  //   3.4.2 also fetch data using common api for dynamic value
+  //   3.4.2 also fetch data using common api for dynamic value which will not use cache i.e dynamic data.
   const product = await getData(
     `http://localhost:8000/products/${id}`,
-    "DataCache - Dynamic Page [id]"
+    "DataCache - Dynamic Page [id]",
   );
 
   //   3.4.3 u can revalidate it using revalidateTag
@@ -53,11 +53,14 @@ export default async function DataCacheDynamic({ params }) {
               className="flex rounded gap-6 border-zinc-800 bg-zinc-900 w-4xl h-40 items-center justify-center font-bold text-2xl text-white"
             >
               {product.title}
+              <span className="pl-3">Price: {product.price}</span>
             </div>
           ))}
         </div>
       </div>
-      {/* 3.4.4 call the onRevalidateTag function. now run build and u can revalidate by the tag. we can use Data Cache in dynamic page, static page. On demand revalidate i.e time based revalidation, tag base revalidation. */}
+      {/* 3.4.4 call the onRevalidateTag function. now run build and u can revalidate by the tag. we can use Data Cache in dynamic page, static page. On demand revalidate i.e time based revalidation, tag base revalidation.
+      Note: In a word in dynamic page we can make the specific part of the page static and the other part dynamic.
+      */}
       <div className="flex justify-center mt-10">
         <form action={onRevalidateTag}>
           <button
